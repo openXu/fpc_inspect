@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fpc_inspect/common/net/http_manager.dart';
 import 'package:fpc_inspect/common/style/fpc_style.dart';
 import 'package:fpc_inspect/common/util/LogUtil.dart';
@@ -109,6 +110,15 @@ class CheckFormPage extends StatelessWidget {
       print("表单结果：$json");
     }else{
       print("请检查表单");
+      Fluttertoast.showToast(
+          msg: "请完成表单后提交",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          // backgroundColor: Colors.red,
+          // textColor: Colors.white,
+          fontSize: 13.0
+      );
     }
   }
 

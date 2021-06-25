@@ -1,0 +1,24 @@
+
+{
+  "id":"20210323144742424",
+  "parentId":"fb63973932d54429b7ca6dcc379d3884",
+  "departName":"创业科技大厦",
+  "departNameEn":null,
+  "departNameAbbr":"创业科技大厦",
+  "departOrder":0,
+  "description":null,
+  "orgCategory":"1",
+  "orgType":"2",
+  "orgCode":"A00000D00002",
+  "mobile":null,
+  "fax":null,
+  "address":null,
+  "memo":null,
+  "status":"1",
+  "delFlag":"0",
+  "createBy":"cyf",
+  "createTime":"2021-03-23 14:48:33",
+  "updateBy":null,
+  "updateTime":null,
+  "orgClass":2
+}

@@ -1,0 +1,6 @@
+{
+  "multi_depart":1,
+  "userInfo":"$login_user",
+  "departs":"$[]$login_depart",
+  "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjI2ODg3NjcsInVzZXJuYW1lIjoiY3lmOTUifQ.3pRxInWIUM3gt7qSaCbQ"
+}

@@ -25,12 +25,12 @@ class FormItemMultInput extends FormItemBase {
   }
 
   @override
-  bool checkFormResult() {
+  bool checkItemResult() {
     return controller.text.isNotEmpty;
   }
 
   @override
-  Indicator getFormResult() {
+  Indicator getItemResult() {
     String value = controller.text;
     _indicator.datavalue = value;
     _indicator.datatext = value;

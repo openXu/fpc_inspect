@@ -14,22 +14,22 @@ class FpcForm extends StatefulWidget {
   final bool enable;
   final bool finished;
   final FpcFormController formController;
-  final List<FpcFormItemController> _formItemController = [];
+  final List<FormItemController> _itemControllers = [];
   FpcForm({this.enable = true,
     this.finished = false,
     required this.formController}){
     ///初始化结果回调
     formController.checkResult = (){
       bool result = true;
-      _formItemController.forEach((itemController) {
-        if(!itemController.formItemCheck()) {
+      _itemControllers.forEach((itemController) {
+        if(!itemController.itemCheck()) {
           result = false;
         }
       });
       return result;
     };
     formController.formResult = () async {
-      return _formItemController.map((itemController) {return itemController.formItemResult();}).toList();
+      return _itemControllers.map((itemController) {return itemController.itemResult();}).toList();
     };
   }
   @override
@@ -53,7 +53,7 @@ class _FpcFormState extends State<FpcForm> {
   @override
   Widget build(BuildContext context){
 
-    widget._formItemController.clear();
+    widget._itemControllers.clear();
 
     if(_indicators==null){
       return Center(
@@ -67,10 +67,8 @@ class _FpcFormState extends State<FpcForm> {
       }).toList(),*/
         children: _indicators!.map((indocator) {
           FpcFormItem formItem = FpcFormItem(indocator, widget.enable);
-
-          widget._formItemController.add(new FpcFormItemController(
-              formItemCheck: () => formItem.checkForm(),
-              formItemResult: () => formItem.formResult())
+          widget._itemControllers.add(FormItemController.forItem(
+              formItem.checkItemResult, formItem.getItemResult)
           );
 
           return formItem;

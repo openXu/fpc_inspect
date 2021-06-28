@@ -88,18 +88,20 @@ class CheckFormPage extends StatelessWidget {
   }
 
   ///请求规范检查任务数据
-  Future<List<Indicator>?> _getFormData() async {
+  Future<List<Indicator>> _getFormData() async {
     Map<String, dynamic> requestParams = {
       "taskobjectid": _obj.taskobjectid??""
     };
+    List<Indicator> taskitem = [];
     var response =
     await httpManager.get(ApiService.URL_CHECK_ITEM_LIST, requestParams);
     if (response.success) {
       CheckItems items = CheckItems.fromJson(response.result);
       LogUtil.v("获取规范检查项 $items");
-      return items.taskitem;
+      if(items.taskitem!=null)
+        taskitem.addAll(items.taskitem!);
     }
-    return null;
+    return taskitem;
   }
 
   ///提交

@@ -17,7 +17,14 @@ import 'package:fpc_inspect/widgets/form/form_config.dart';
 ///
 ///
 
-
+///表单项控制器
+typedef FormItemResult = Indicator Function();
+class FormItemController{
+  late FormResultCheck itemCheck;
+  late FormItemResult itemResult;
+  FormItemController();
+  FormItemController.forItem(this.itemCheck, this.itemResult);
+}
 
 class FpcFormItem extends StatefulWidget {
 
@@ -25,7 +32,7 @@ class FpcFormItem extends StatefulWidget {
   final Indicator _indicator;
   final List<IndicatorEnum> _enumList = [];
 
-  late final FpcFormItemController formItemController;
+  late final FormItemController itemController;
 
   FpcFormItem(this._indicator, this._enable){
     if("2" == _indicator.indicatortype){  //枚举
@@ -38,16 +45,13 @@ class FpcFormItem extends StatefulWidget {
         print("解析枚举列表错误$e");
       }
     }
-  }
 
-  ///检查表单项是否完成填报
-  bool checkForm(){
-    return formItemController.formItemCheck();
+    itemController = FormItemController();
+
   }
-  ///获取表单项结果
-  Indicator formResult(){
-    return formItemController.formItemResult();
-  }
+  bool checkItemResult() => itemController.itemCheck();
+
+  Indicator getItemResult() => itemController.itemResult();
 
   @override
   _FpcFormItemState createState() => new _FpcFormItemState();
@@ -111,10 +115,8 @@ class _FpcFormItemState extends State<FpcFormItem> {
       _itemWidget = new FormItemError(widget._indicator, "错误的indicatortype指标类型${widget._indicator.indicatortype}");
     }
     ///初始化item控制器
-    widget.formItemController = FpcFormItemController(
-        formItemCheck: _itemWidget.checkFormResult,
-        formItemResult:_itemWidget.getFormResult
-    );
+    widget.itemController.itemCheck = _itemWidget.checkItemResult;
+    widget.itemController.itemResult = _itemWidget.getItemResult;
 
     return Column(
         children:[

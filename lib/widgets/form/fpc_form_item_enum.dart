@@ -25,12 +25,12 @@ class FormItemEnum extends FormItemBase {
   }
 
   @override
-  bool checkFormResult() {
+  bool checkItemResult() {
     return _selectedItem!=null;
   }
 
   @override
-  Indicator getFormResult() {
+  Indicator getItemResult() {
     _indicator.datavalue = _selectedItem?.IndicatorID;
     _indicator.datatext = _selectedItem?.EnumValue;
     _indicator.isnormal = isNormal()? 1 : 0;  //是否正常值(0,否;1,是)'

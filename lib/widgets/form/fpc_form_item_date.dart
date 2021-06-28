@@ -39,12 +39,12 @@ class FormItemDate extends FormItemBase {
     };
   }
   @override
-  bool checkFormResult() {
+  bool checkItemResult() {
     return _dateTime!=null;
   }
 
   @override
-  Indicator getFormResult() {
+  Indicator getItemResult() {
     String value = _date2Str(_dateTime)??"";
     _indicator.datavalue = value;
     _indicator.datatext = value;

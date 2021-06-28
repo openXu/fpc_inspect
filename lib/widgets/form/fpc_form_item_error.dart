@@ -20,12 +20,12 @@ class FormItemError extends FormItemBase {
   FormItemError(this._indicator, this._errorStr){
   }
   @override
-  bool checkFormResult() {
+  bool checkItemResult() {
     return true;
   }
 
   @override
-  Indicator getFormResult() {
+  Indicator getItemResult() {
     return _indicator;
   }
   @override

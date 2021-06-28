@@ -14,8 +14,8 @@ abstract class FormItemBase extends StatelessWidget {
 
   // void setEnabled(bool enable);
 
-  bool checkFormResult();
-  Indicator getFormResult();
+  bool checkItemResult();
+  Indicator getItemResult();
 
   bool isNormal(){
     return true;

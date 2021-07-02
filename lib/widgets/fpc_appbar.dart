@@ -21,8 +21,7 @@ class FpcAppBar extends StatelessWidget {
   // toolbarOpacity AppBar tool区域透明度
   // bottomOpacity bottom区域透明度
 
-  FpcAppBar(
-    this.title);
+  FpcAppBar( this.title);
 
   @override
   Widget build(BuildContext context) {

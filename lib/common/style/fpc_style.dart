@@ -44,6 +44,7 @@ class FPCColors {
   static const Color blue = Color(0xff5da3f4);
   static const Color grey = Color(0xffF2F2F2);
   static const Color orange = Color(0xffDB4528);
+  static const Color trance = Color(0xffDB4528);
 
 
 /*  static const Color colorAccent = Color(0xffdb4527);

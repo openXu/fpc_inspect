@@ -1,8 +1,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.fpc.fpc_inspect">
-   <application
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true"
+        tools:targetApi="eclair" />
+
+    <application
         android:label="fpc_inspect"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/NormalTheme">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -38,6 +50,9 @@
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+
+        <activity android:name="com.fpc.core.zxing.activity.DecoderActivity"/>
+
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />

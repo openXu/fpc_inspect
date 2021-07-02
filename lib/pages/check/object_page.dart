@@ -4,12 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'package:fpc_inspect/common/net/http_manager.dart';
 import 'package:fpc_inspect/common/style/fpc_style.dart';
 import 'package:fpc_inspect/common/util/LogUtil.dart';
-import 'package:fpc_inspect/config/Global.dart';
 import 'package:fpc_inspect/config/api_service.dart';
 import 'package:fpc_inspect/pages/check/models/CheckTask.dart';
-import 'package:fpc_inspect/pages/check/models/CheckTaskPage.dart';
 import 'package:fpc_inspect/widgets/fpc_refresh_loadmore.dart';
 import 'package:fpc_inspect/widgets/fpc_ripple_item.dart';
+import 'package:fpc_inspect/widgets/fpc_widget_utils.dart';
 
 import 'form_page.dart';
 import 'models/CheckObject.dart';
@@ -26,17 +25,7 @@ class CheckObjectList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_task.TaskName??"", style: TextStyle(fontSize: 16)),
-        centerTitle: true,
-        //左边图标
-        leading: new IconButton(
-          icon: new Icon(Icons.arrow_back_ios),
-          onPressed: () => {
-            Navigator.of(context).pop()
-          },
-        ),
-      ),
+      appBar: FpcWidgetUtils.getApp(context, _task.TaskName??""),
       ///使用自定义下拉上拉列表页
       body: RefreshLoadmore<CheckObject>(
           divider: Divider(),

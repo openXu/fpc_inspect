@@ -14,6 +14,7 @@ import 'package:fpc_inspect/widgets/form/fpc_form_controller.dart';
 import 'package:fpc_inspect/widgets/form/models/Indicator.dart';
 import 'package:fpc_inspect/widgets/fpc_attr.dart';
 import 'package:fpc_inspect/widgets/fpc_button.dart';
+import 'package:fpc_inspect/widgets/fpc_widget_utils.dart';
 
 import 'models/CheckItems.dart';
 import 'models/CheckObject.dart';
@@ -35,15 +36,7 @@ class CheckFormPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_obj.taskobjectname??"", style: TextStyle(fontSize: 16)),
-        centerTitle: true,
-        //左边图标
-        leading: new IconButton(
-          icon: new Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
+      appBar: FpcWidgetUtils.getApp(context, _obj.taskobjectname??""),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize : MainAxisSize.min,

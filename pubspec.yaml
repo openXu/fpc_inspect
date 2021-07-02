@@ -42,6 +42,16 @@ dependencies:
   date_format: ^2.0.2   # DateTime日期转字符串 https://pub.dev/packages/date_format
   image_picker: ^0.8.0   #图片选择器 https://github.com/flutter/plugins/tree/master/packages/image_picker/image_picker
 
+#  flutter_nfc_reader: ^0.1.0   # nfc插件 https://github.com/matteocrippa/flutter-nfc-reader
+  barcode_scan2: ^4.1.3   # 二维码 https://pub.dev/packages/barcode_scan2
+
+  webview_flutter: ^2.0.9 #.IOS端不支持加载本地html。 https://pub.flutter-io.cn/packages/webview_flutter
+
+  # 响应式 Echarts Flutter 组件 https://zhuanlan.zhihu.com/p/99034738
+  flutter_echarts: ^2.1.0 # https://github.com/entronad/flutter_echarts/blob/master/README_CN.md
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -58,9 +68,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - images/launch_image.png   # asset的实际目录可以是任意文件夹（在本示例中是assets）
-    - images/   # asset的实际目录可以是任意文件夹（在本示例中是assets）
-    - jsons/user_permission.json
+    - assets/images/launch_image.png   # asset的实际目录可以是任意文件夹（在本示例中是assets）
+    - assets/images/   # asset的实际目录可以是任意文件夹（在本示例中是assets）
+    - assets/jsons/user_permission.json
+    - assets/files/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

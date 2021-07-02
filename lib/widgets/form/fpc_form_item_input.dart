@@ -14,7 +14,8 @@ import 'models/Indicator.dart';
 ///
 
 class FormItemInput extends FormItemBase {
-
+//TODO 焦点节点，一般用于自动获取焦点，取消焦点以便隐藏键盘等
+//   FocusNode _inputFocusNode = FocusNode();
   final TextEditingController controller = new TextEditingController();
 
   final bool _enable;

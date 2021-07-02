@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fpc_inspect/config/Global.dart';
 import 'package:fpc_inspect/config/config.dart';
-import 'package:fpc_inspect/mixin/login.dart';
 import 'package:fpc_inspect/models/LoginInfo.dart';
-import 'package:fpc_inspect/pages/login_page.dart';
+import 'package:fpc_inspect/pages/login/login_page.dart';
 import 'package:fpc_inspect/pages/main_page.dart';
+
+import 'login_mixin.dart';
 
 /*
  * 欢迎页
@@ -54,8 +55,8 @@ class _WelcomePageState extends State<WelcomePage> with Login{
   Widget build(BuildContext context) {
     return Material(
       child: Image(
-          image: AssetImage("images/launch_image.png"),
-          width: 80.0
+          image: AssetImage("assets/images/launch_image.png"),
+          fit:BoxFit.cover
       ),
     );
 

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fpc_inspect/common/net/http_manager.dart';
 import 'package:fpc_inspect/common/style/fpc_style.dart';
 import 'package:fpc_inspect/common/util/LogUtil.dart';
+import 'package:fpc_inspect/common/util/common_utils.dart';
 import 'package:fpc_inspect/config/Global.dart';
 import 'package:fpc_inspect/config/api_service.dart';
 import 'package:fpc_inspect/pages/check/models/CheckTask.dart';
@@ -12,6 +13,7 @@ import 'package:fpc_inspect/pages/check/object_page.dart';
 import 'package:fpc_inspect/router/routes.dart';
 import 'package:fpc_inspect/widgets/fpc_refresh_loadmore.dart';
 import 'package:fpc_inspect/widgets/fpc_ripple_item.dart';
+import 'package:fpc_inspect/widgets/fpc_widget_utils.dart';
 
 ///规范检查--任务列表
 ///
@@ -20,24 +22,13 @@ import 'package:fpc_inspect/widgets/fpc_ripple_item.dart';
 class CheckTaskList extends StatelessWidget {
   static final String sName = "/check_task_list";
 
-
-  final String _title;
-  CheckTaskList(this._title);
+  final Map<String, Object> _arguments;
+  CheckTaskList(this._arguments);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_title, style: TextStyle(fontSize: 16)),
-        centerTitle: true,
-        //左边图标
-        leading: new IconButton(
-          icon: new Icon(Icons.arrow_back_ios),
-          onPressed: () => {
-            Navigator.of(context).pop('返回数据')
-          },
-        ),
-      ),
+      appBar: FpcWidgetUtils.getApp(context, _arguments[RouteArgs.TITLE]?.toString()??""),
       ///使用自定义下拉上拉列表页
       body: RefreshLoadmore<CheckTask>(
           firstPage: 1,
@@ -82,7 +73,7 @@ class CheckTaskList extends StatelessWidget {
         Row(
           children: [
             Text("进度  ", style: FPCStyle.middleText),
-            Text(task.progress ?? "",
+            Text(CommonUtils.getChineseWestern(task.progress),
                 style: FPCStyle.middleText.copyWith(
                     color: FPCColors.mainTextColor //修改中等文本颜色
                 )),

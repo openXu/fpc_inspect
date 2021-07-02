@@ -4,11 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fpc_inspect/common/style/fpc_style.dart';
 import 'package:fpc_inspect/common/util/sp_storage.dart';
-import 'package:fpc_inspect/config/Global.dart';
-import 'package:fpc_inspect/mixin/login.dart';
 import 'package:fpc_inspect/widgets/fpc_button.dart';
 
-import '../login_page.dart';
+import '../login/login_page.dart';
 
 ///我的
 ///

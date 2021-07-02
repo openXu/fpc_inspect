@@ -129,6 +129,7 @@ class _FpcFormItemState extends State<FpcFormItem> {
                 child: InkWell(
                   //可点击的item设置onTap事件，item点击时会有涟漪效果，如果设置为null则没有
                   onTap: _clickAble?() async{
+                    ///父Widget管理子Widget的状态
                     if(_itemWidget is FormItemEnum) {
                       _selectedEnum = await (_itemWidget).click(context);
                       print("枚举项选择了：${_selectedEnum?.EnumValue}");

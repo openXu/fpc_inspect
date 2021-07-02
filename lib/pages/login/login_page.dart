@@ -1,18 +1,16 @@
 import 'dart:convert';
 import 'dart:typed_data';
 //Key和material包中Key类名冲突，可以给加密包取别名，这样调用包中的类时都要通过 别名encrypt.
-import 'package:encrypt/encrypt.dart' as encrypt;
-import 'package:encrypt/encrypt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fpc_inspect/config/Global.dart';
 import 'package:fpc_inspect/common/style/fpc_style.dart';
-import 'package:fpc_inspect/mixin/login.dart';
 import 'package:fpc_inspect/widgets/fpc_button.dart';
 import 'package:fpc_inspect/widgets/fpc_input.dart';
 
-import 'main_page.dart';
+import '../main_page.dart';
+import 'login_mixin.dart';
 
 ///登录页面
 class LoginPage extends StatefulWidget{
@@ -80,7 +78,7 @@ class _LoginPageState extends State<LoginPage>  with Login{
                       mainAxisSize:MainAxisSize.min,  //垂直方向包裹内容
                       children: [
                         Image(
-                          image: AssetImage("images/icon_logo.png"),
+                          image: AssetImage("assets/images/icon_logo.png"),
                         ),
                         SizedBox(height: 10),//保留间距10
                         Text("安全生产管理系统", style: FPCStyle.normalText.copyWith(

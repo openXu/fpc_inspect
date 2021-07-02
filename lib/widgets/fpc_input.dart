@@ -44,6 +44,7 @@ class FpcInput extends StatefulWidget {
 
   //设置样式
   final InputDecoration? decoration;   //额外设置装饰
+  final Color fillColor;
   final EdgeInsetsGeometry contentPadding;
   final TextAlign textAlign;  //水平对齐方式
   final TextAlignVertical textAlignVertical;// 竖直对齐方式
@@ -64,6 +65,8 @@ class FpcInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   //控制器
   final TextEditingController? controller;
+  //焦点节点，一般用于自动获取焦点，取消焦点以便隐藏键盘等
+  final FocusNode? focusNode;
   //校验
   final FormFieldValidator<String>? validator;
   FpcInput(
@@ -76,6 +79,7 @@ class FpcInput extends StatefulWidget {
         this.inputFormatters,
         this.enterType = TextInputAction.next,   //默认回车跳到下一个选项
         this.enterAction,
+        this.fillColor = Colors.transparent,
         this.contentPadding = const EdgeInsets.symmetric(horizontal: 8, vertical: 10),//内容内边距，影响高度
         this.hintText,
         this.style = FPCStyle.normalText, //正常字体
@@ -97,6 +101,7 @@ class FpcInput extends StatefulWidget {
         this.iconConstraints,
         this.decoration,
         this.controller,
+        this.focusNode,
         this.onChanged,
         this.validator}) : super(key: key){}
 
@@ -141,6 +146,8 @@ class _FpcInputState extends State<FpcInput> {
           decoration: widget.decoration ?? new InputDecoration(
             hintText: widget.hintText,
             hintStyle:widget.hintStyle,
+            fillColor: widget.fillColor,//背景颜色，必须结合filled: true,才有效
+            filled: true,//重点，必须设置为true，fillColor才有效
             icon: widget.icon,
             prefixIcon: widget.prefixIcon,
             //修改图片大小，突破最小48限制
@@ -162,6 +169,7 @@ class _FpcInputState extends State<FpcInput> {
           ),
 
           controller: widget.controller,
+          focusNode: widget.focusNode,
           onChanged: widget.onChanged,
 
           ///TextFormField比TextField多了 validator校验函数属性

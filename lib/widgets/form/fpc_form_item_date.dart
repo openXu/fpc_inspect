@@ -1,25 +1,9 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fpc_inspect/common/style/fpc_style.dart';
-import 'package:fpc_inspect/pages/check/models/CheckItems.dart';
-
 import 'fpc_form_item_base.dart';
 import 'models/Indicator.dart';
-
-/// 自定义输入组件
-/// 
-///
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fpc_inspect/common/style/fpc_style.dart';
 import 'package:fpc_inspect/widgets/form/form_config.dart';
-
-import '../fpc_input.dart';
-import 'fpc_form.dart';
-import 'fpc_form_item_base.dart';
-import 'models/Indicator.dart';
 
 /// 表单--日期 弹窗
 ///

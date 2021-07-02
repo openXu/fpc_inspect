@@ -1,20 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fpc_inspect/pages/chart/echartsSample/echarts_main.dart';
+import 'package:fpc_inspect/pages/chart/flutter_echarts_custom.dart';
+import 'package:fpc_inspect/pages/chart/flutter_echarts_test.dart';
+import 'package:fpc_inspect/pages/chart/web_view_page.dart';
 import 'package:fpc_inspect/pages/check/form_page.dart';
 import 'package:fpc_inspect/pages/check/object_page.dart';
 import 'package:fpc_inspect/pages/check/task_page.dart';
-import 'package:fpc_inspect/pages/login_page.dart';
-import 'package:fpc_inspect/pages/welcome_page.dart';
+import 'package:fpc_inspect/pages/login/login_page.dart';
+import 'package:fpc_inspect/pages/other/bind/barcode_scan_page.dart';
+import 'package:fpc_inspect/pages/other/bind/bind_page.dart';
+import 'package:fpc_inspect/pages/other/bind/equepment_bind_page.dart';
+import 'package:fpc_inspect/pages/other/bind/fpc_barcode_scan_page.dart';
+import 'package:fpc_inspect/pages/other/bind/nfc_page.dart';
+import 'package:fpc_inspect/pages/login/welcome_page.dart';
+
+
+class RouteArgs{
+  static const String TITLE = "title";
+}
 
 
 var routes = {
   WelcomePage.sName:(context) => WelcomePage(),
   LoginPage.sName:(context,{arguments})=>LoginPage(),
+  ///图表
+  WebViewPage.sName:(context,{arguments}) => WebViewPage(arguments),
+  EchartsMain.sName:(context,{arguments}) => EchartsMain(),
+  EchartsTest.sName:(context,{arguments}) => EchartsTest(arguments),
+  EchartsCustom.sName:(context,{arguments}) => EchartsCustom(arguments),
 
-  //规范检查
+  ///规范检查
   CheckTaskList.sName:(context,{arguments}) => CheckTaskList(arguments),
   CheckObjectList.sName:(context,{arguments}) => CheckObjectList(arguments),
   CheckFormPage.sName:(context,{arguments}) => CheckFormPage(arguments),
+
+  ///标签绑定
+  BindCode.sName:(context,{arguments}) => BindCode(arguments),
+  EqBindCode.sName:(context,{arguments}) => EqBindCode(arguments),
+  NfcRead.sName:(context,{arguments}) => NfcRead(),
+  BarCodeScan.sName:(context,{arguments}) => BarCodeScan(),
+  FpcBarCodeScan.sName:(context,{arguments}) => FpcBarCodeScan(),
+
   //定义route的时候就定义好跳转到当前页面需要接受参数
   //'/login':(context,{arguments})=>TestLogin(arguments: arguments,),
 };

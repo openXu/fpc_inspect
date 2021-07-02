@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--二维码扫描-->
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_laser">#db4527</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#805c5c5c</color>
+    <color name="transparent">#00000000</color>
+
+    <!--FToast-->
+    <color name="toast_defaultTextColor">#FFFFFF</color> <!--Toast默认文字颜色-->
+    <color name="toast_errorColor">#353A3E</color> <!--各种Toast背景底色-->
+    <color name="toast_infoColor">#353A3E</color>
+    <color name="toast_successColor">#353A3E</color>
+    <color name="toast_warningColor">#353A3E</color>
+    <color name="toast_normalColor">#353A3E</color>
+<!--
+    <color name="toast_defaultTextColor">#FFFFFF</color> &lt;!&ndash;Toast默认文字颜色&ndash;&gt;
+    <color name="toast_errorColor">#D50000</color> &lt;!&ndash;各种Toast背景底色&ndash;&gt;
+    <color name="toast_infoColor">#3F51B5</color>
+    <color name="toast_successColor">#388E3C</color>
+    <color name="toast_warningColor">#FFA900</color>
+    <color name="toast_normalColor">#353A3E</color>
+-->
+
+    <!--****↓↓↓↓↓↓↓↓↓↓↓↓app整体颜色规范↓↓↓↓↓↓↓↓↓↓↓↓****-->
+
+    <!--主题色：一般用于标题   用于title_bar等重要的颜色提醒-->
+    <color name="colorPrimary">#db4527</color>
+    <!-- 状态栏颜色 -->
+    <color name="colorPrimaryDark">#db4527</color>
+    <!--colorAccent: 辅助色（或强调色）：一般用于某些与主题呼应的图片-->
+    <color name="colorAccent">#db4527</color>
+    <!--Window的背景色-->
+    <color name="windowBackground">#f7f7f7</color>
+    <color name="main_style">#f7f7f7</color>    <!--通用背景色-->
+    <!--主要的文字颜色，一般TextView的文字都是这个颜色-->
+    <color name="textColorPrimary">#1B1B1D</color>
+    <!--辅助的文字颜色，一般比textColorPrimary的颜色弱一点，用于一些弱化的表示-->
+    <color name="textColorSecondary">#6B7178</color>
+    <!--内容区域按下时的背景色-->
+    <color name="colorRipple">#FFCBC3</color>
+    <color name="white_press_bg">#16000000</color>
+
+    <!--线条色-->
+    <color name="line_bg_color">#f7f7f7</color>
+    <color name="chart_line_color">#e6e6e6</color>
+
+    <!--字体颜色-->
+    <color name="text_color_def">#5E5E5E</color>
+    <color name="text_color_light_gray">#939393</color>
+    <color name="edit_hint_color">#cecece</color>
+
+    <!--辅助色-->
+    <color name="color_white">#ffffff</color>
+    <color name="color_red">#d94630</color>
+    <color name="color_yellow">#f28d02</color>
+    <color name="color_green">#66b61d</color>
+    <color name="color_blue">#5da3f4</color>
+    <color name="color_bg_grey">#F2F2F2</color>>
+    <color name="color_main_orange">#DB4528</color>
+    <!--****↑↑↑↑↑↑↑↑↑↑↑↑app整体颜色规范↑↑↑↑↑↑↑↑↑↑↑↑****-->
+
+
+</resources>

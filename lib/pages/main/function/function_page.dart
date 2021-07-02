@@ -4,9 +4,15 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fpc_inspect/common/style/fpc_style.dart';
 import 'package:fpc_inspect/config/Global.dart';
-import 'package:fpc_inspect/mixin/login.dart';
 import 'package:fpc_inspect/models/UserPermission.dart';
+import 'package:fpc_inspect/pages/chart/echartsSample/echarts_main.dart';
+import 'package:fpc_inspect/pages/chart/flutter_echarts_custom.dart';
+import 'package:fpc_inspect/pages/chart/flutter_echarts_test.dart';
+import 'package:fpc_inspect/pages/chart/web_view_page.dart';
 import 'package:fpc_inspect/pages/check/task_page.dart';
+import 'package:fpc_inspect/pages/login/login_mixin.dart';
+import 'package:fpc_inspect/pages/other/bind/bind_page.dart';
+import 'package:fpc_inspect/router/routes.dart';
 import 'package:fpc_inspect/widgets/fpc_ripple_item.dart';
 
 ///功能
@@ -67,7 +73,7 @@ class _FunctionPageState extends State<FunctionPage>  with Login{
                     Fluttertoast.showToast(msg: "功能暂未开放");
                     return;
                   }
-                  Navigator.of(context).pushNamed(module.navigation, arguments:module.name);
+                  Navigator.of(context).pushNamed(module.navigation, arguments:module.arguments);
                   print("点击${module.name}  ${module.navigation}");
                 });
               },
@@ -94,6 +100,24 @@ class _FunctionPageState extends State<FunctionPage>  with Login{
   _parsePermissionData() async {
 
     List<UserPermission>? userPermission = await Global.getUserPermission();
+
+    ///TODO 图表测试入口
+    userPermission?.forEach((element) {
+      if (element.component == PermissionComponent.level1_function) { //找到功能模块
+        List<UserPermission> newList = [];
+        List<UserPermission> chartList = [];
+        chartList.add(new UserPermission(1, "webview", "WebView", "平台组件webview", "", "", null));
+        chartList.add(new UserPermission(1, "flutterEcharts", "flutterEchart", "flutterEchart插件示例", "", "", null));
+        chartList.add(new UserPermission(1, "echarts_test", "echart测试", "echaert测试", "", "", null));
+        chartList.add(new UserPermission(1, "echarts_custom", "echart自定义", "echart自定义", "", "", null));
+        chartList.add(new UserPermission(1, "chart_4", "饼状图", "饼状图", "", "", null));
+        UserPermission chartTitle = new UserPermission(2, "chart", "图表", "", "", "", chartList);
+        newList.add(chartTitle);
+        newList.addAll(element.children!);
+        element.children = newList;
+      }
+    });
+
     print("解析用户权限：$userPermission");
     userPermission?.forEach((element) {
       if(element.component == PermissionComponent.level1_function){ //找到功能模块
@@ -137,59 +161,90 @@ class _FunctionPageState extends State<FunctionPage>  with Login{
   _setModel(FunctionModule module) {
 
     switch(module.component){
-    /**双控预防  dp*/
-      case PermissionComponent.level3_dddj:  //督导管控--督导登记
-        _setModel1(module, "images/res_icon_func_xfjd_xttx.png", CheckTaskList.sName);
+
+    /**图表测试  chart*/
+      case "webview":
+        _setModel1(module, null, WebViewPage.sName);
         break;
+      case "flutterEcharts":
+        _setModel1(module, null, EchartsMain.sName);
+        break;
+      case "echarts_test":
+        _setModel1(module, null, EchartsTest.sName);
+        break;
+      case "echarts_custom":
+        _setModel1(module, null, EchartsCustom.sName);
+        break;
+      case "chart_4":
+        _setModel1(module, null, CheckTaskList.sName);
+        break;
+     /**安全检查  exam*/
+      case PermissionComponent.level3_rwdj:
+        _setModel1(module, "assets/images/res_icon_func_xfjd_xttx.png", CheckTaskList.sName);
+        break;
+     /**其他*/
+      case PermissionComponent.level3_sbbd:  //设备绑定
+        _setModel1(module, "assets/images/res_icon_func_xfjd_xttx.png", BindCode.sName, map: {"bindType":1});
+        break;
+      case PermissionComponent.level3_qybd:  //区域绑定
+        _setModel1(module, "assets/images/res_icon_func_xfjd_xttx.png", BindCode.sName, map: {"bindType":2});
+        break;
+    //     UserPermission.level3_dddj -> {  //督导管控--督导登记
+    // setModel(module, R.mipmap.res_icon_func_xfjd_xttx, RouterPathSv.PAGE_SV_LIST, null)
+    // }
     // /**双控预防  dp*/
-    // PermissionComponent.level3_fxda -> {  //风险档案
+    // UserPermission.level3_fxda -> {  //风险档案
     // val bundle = Bundle()
     // bundle.putInt("status", 0)
     // setModel(module, R.mipmap.res_icon_func_aqzy_zyrwcx, RouterPathRisk.PAGE_RISK_LIST, bundle)
     // }
-    // PermissionComponent.level3_jcsq -> {   //解除申请
+    // UserPermission.level3_jcsq -> {   //解除申请
     // val bundle = Bundle()
     // bundle.putInt("status", 1)
     // setModel(module, R.mipmap.res_icon_func_zhyw_dhzzf, RouterPathRisk.PAGE_RISK_LIST, bundle)
     // }
-    // PermissionComponent.level3_jcsp ->{  //解除审批
+    // UserPermission.level3_jcsp ->{  //解除审批
     // val bundle = Bundle()
     // bundle.putInt("status", 2)
     // setModel(module, R.mipmap.res_icon_func_aqzy_zyrwsh, RouterPathRisk.PAGE_RISK_LIST, bundle)
     // }
     // /**安全检查  exam*/
-    // PermissionComponent.level3_rwdj ->setModel(module, R.mipmap.res_icon_func_dqrw_gfjc, RouterPathCheck.PAGE_TASKLIST, null)  //任务登记
+    // UserPermission.level3_rwdj ->setModel(module, R.mipmap.res_icon_func_dqrw_gfjc, RouterPathCheck.PAGE_TASKLIST, null)  //任务登记
     // /**检查整改  proc*/
-    // PermissionComponent.level3_zgcx ->{  //整改查询
+    // UserPermission.level3_zgcx ->{  //整改查询
     // setModel(module, R.mipmap.res_icon_func_zhtyw_sgrwcx, RouterPathDanger.PAGE_RECTIFY_LIST, null)
     // }
-    // PermissionComponent.level3_zgxd ->setModel(module, R.mipmap.res_icon_func_yhcl_zgxd, RouterPathDanger.PAGE_ADD_RECTIFY, null)  //整改下单
-    // PermissionComponent.level3_zgdj ->{  //整改登记
+    // UserPermission.level3_zgxd ->setModel(module, R.mipmap.res_icon_func_yhcl_zgxd, RouterPathDanger.PAGE_ADD_RECTIFY, null)  //整改下单
+    // UserPermission.level3_zgdj ->{  //整改登记
     // val bundle = Bundle()
     // bundle.putBoolean("operator", true)
     // setModel(module, R.mipmap.res_icon_func_jczg_zgdj, RouterPathDanger.PAGE_RECTIFY_LIST, bundle)
     // }
     // /**其他*/ // TODO 缺少图标设计，使用的其他图标顶替的
-    // PermissionComponent.level3_wdzz ->setModel(module, R.mipmap.res_icon_func_wxxfz_rygl, RouterPathMultiple.PAGE_MYDUTY, null)  //我的职责
-    // PermissionComponent.level3_sbbd ->{   //设备绑定  //之前的设备标签绑定RouterPathEquipment.PAGE_SELECTLABLE
+    // UserPermission.level3_wdzz ->setModel(module, R.mipmap.res_icon_func_wxxfz_rygl, RouterPathMultiple.PAGE_MYDUTY, null)  //我的职责
+    // UserPermission.level3_sbbd ->{   //设备绑定  //之前的设备标签绑定RouterPathEquipment.PAGE_SELECTLABLE
     // val bundle = Bundle()
     // bundle.putInt("bindType", 1)
     // setModel(module, R.mipmap.res_icon_func_zhyw_sbbqbd, RouterPathMultiple.PAGE_BINDING, bundle)
     // }
-    // PermissionComponent.level3_qybd ->{   //区域绑定    //替换之前的RouterPathMultiple.PAGE_AREABINDING
+    // UserPermission.level3_qybd ->{   //区域绑定    //替换之前的RouterPathMultiple.PAGE_AREABINDING
     // val bundle = Bundle()
     // bundle.putInt("bindType", 2)
     // setModel(module, R.mipmap.res_icon_func_qt_qybd, RouterPathMultiple.PAGE_BINDING, bundle)
     // FLog.w("当前单位id  ${mViewModel.user.orgId}")
     // }
-    // PermissionComponent.level3_zsk ->setModel(module, R.mipmap.res_icon_func_zsk_zsk, RouterPathMultiple.PAGE_KNOWLEDGE, null)  //知识库
+    // UserPermission.level3_zsk ->setModel(module, R.mipmap.res_icon_func_zsk_zsk, RouterPathMultiple.PAGE_KNOWLEDGE, null)  //知识库
 
     }
 
   }
-  _setModel1(FunctionModule module, String icon, String navigation){
+  _setModel1(FunctionModule module, String? icon, String navigation, {Map<String, Object>? map}){
       module.icon = icon;
       module.navigation = navigation;
+      //添加标题
+      module.arguments = {RouteArgs.TITLE:module.name};
+      if(map!=null)
+        module.arguments!.addAll(map);
   }
 
 }
@@ -210,6 +265,7 @@ class FunctionModule{
   String? icon;             //图片
   int? cornerNumber;     //消息数
   String navigation = "";
+  Map<String, Object>? arguments;
 
   FunctionModule(
       this.type,
@@ -267,7 +323,7 @@ class FunctionItemWidget extends StatelessWidget {
               height: 40,
               child: _module.type == FunctionModule.TYPE_CONTENT?
               Image(
-                  image: AssetImage(_module.icon??"images/icon_fun_def.png"),
+                  image: AssetImage(_module.icon??"assets/images/icon_fun_def.png"),
                   fit:BoxFit.fill    //图片填充
               ):null,
             ),

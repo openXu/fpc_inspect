@@ -14,6 +14,10 @@ typedef ListItemBuilder<D> = Widget Function(BuildContext context, D t);
 ///     返回空数组表示请求数据成功，但是没有数据
 typedef ListRequestData<D> = Future<List<D>?> Function(int pageNo, int pageSize);
 
+class ListStateController {
+  late final VoidCallback refresh;
+}
+
 class RefreshLoadmore<T> extends StatefulWidget {
 
   // /// callback function on pull down to refresh | 下拉刷新时的回调函数，默认为null不能下拉刷新
@@ -38,6 +42,7 @@ class RefreshLoadmore<T> extends StatefulWidget {
   /// [noMoreText] text style | [noMoreText]的文字样式
   final TextStyle noMoreTextStyle;
 
+  final ListStateController? stateController;
   const RefreshLoadmore(
     {
     Key? key,
@@ -49,6 +54,7 @@ class RefreshLoadmore<T> extends StatefulWidget {
     this.refreshAble = true,
     this.loadmoreAble = true,
     this.noMoreTextStyle = FPCStyle.middleText,
+    this.stateController,
   }) : super(key: key);
   @override
   _RefreshLoadmoreState<T> createState() => _RefreshLoadmoreState<T>();
@@ -80,6 +86,13 @@ class _RefreshLoadmoreState<D> extends State<RefreshLoadmore<D>> {
   @override
   void initState() {
     super.initState();
+
+    if(widget.stateController!=null){
+      widget.stateController!.refresh = (){
+        _firstLoad();
+      };
+    }
+
     _page = widget.firstPage;
 
     _scrollController = ScrollController();

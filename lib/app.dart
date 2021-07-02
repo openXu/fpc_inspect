@@ -6,7 +6,7 @@ import 'package:fpc_inspect/common/style/fpc_style.dart';
 import 'package:fpc_inspect/pages/main_page.dart';
 import 'package:fpc_inspect/router/routes.dart';
 
-import 'pages/welcome_page.dart';
+import 'pages/login/welcome_page.dart';
 
 class FpcInspectApp extends StatefulWidget {
   @override

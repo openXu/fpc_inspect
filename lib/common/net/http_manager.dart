@@ -22,17 +22,13 @@ part 'error_handle.dart';
 final HttpManager httpManager = new HttpManager();
 
 class HttpManager{
-
   // BuildContext context;
   // Options _options;
-
   late Dio _dio;
-
   Dio get dio => _dio;
 
   HttpManager() {
     print("初始化网络框架...");
-
     _dio = createDio();
   }
 

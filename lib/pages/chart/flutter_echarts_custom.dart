@@ -174,6 +174,8 @@ class _EchartsCustomState extends State<EchartsCustom> {
       }]
     }
   ''',
+
+
     );
   }
 
